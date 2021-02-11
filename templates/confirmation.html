@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Confirmation </title>
+</head>
+<body>
+    <h1>Czy napewno chcesz usunąć "{{ recipe }}" przepis?</h1>
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit">Usuń</button>
+    </form>
+</body>
+</html>

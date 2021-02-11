@@ -9,7 +9,7 @@ class Recipe(models.Model):
     time = models.PositiveSmallIntegerField()
     category = models.CharField(max_length=32)
     isFavorite = models.BooleanField()
-    
+    image = models.ImageField(upload_to="images", null=True, blank=True)
 
     def __str__(self):
         return self.name
