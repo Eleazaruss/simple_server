@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="{% static 'base.css' %}">
 </head>
 <body>
+    <a href="{% url 'new_recipe' %}">Dodaj</a>
     <h2>Lista przepisów:</h2>
 
     {% if recipes|length == 0 %}
@@ -14,10 +15,12 @@
     {% else %}
         <p>Ilość: {{ recipes|length }}</p>
         {% for recipe in recipes %}
-
            <h3> {{ recipe }} </h3>
+           <p> {{ recipe.id }}</p>
            <p> {{ recipe.description }}</p>
            <p> {{ recipe.steps }}</p>
+           <a href="{% url 'edit_recipe' recipe.id %}">Edytuj</a>
+           <a href="{% url 'delete_recipe' recipe.id %}">Usuń</a>
         {% endfor %}
     {% endif%}
 </body>

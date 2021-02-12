@@ -5,6 +5,7 @@
     <title>Confirmation </title>
 </head>
 <body>
+    <a href="{% url 'all_recipe' %}">Cofnij</a>
     <h1>Czy napewno chcesz usunąć "{{ recipe }}" przepis?</h1>
     <form method="post">
         {% csrf_token %}

@@ -7,10 +7,11 @@
     <link rel="stylesheet" href="{% static 'base.css' %}">
 </head>
 <body>
+    <a href="{% url 'all_recipe' %}">Cofnij</a>
     <form method="post" enctype="multipart/form-data">
         {% csrf_token %}
         {{ form }}
-        <button type="submit">Zapisz</button>
+        <button type="Zapisz">Zapisz</button>
     </form>
 </body>
 </html>
