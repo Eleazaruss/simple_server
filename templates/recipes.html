@@ -1,27 +1,50 @@
-{% load static %}
-<!DOCTYPE html>
-<html lang="pl">
-<head>
-    <meta charset="UTF-8">
-    <title>Przepisy</title>
-    <link rel="stylesheet" href="{% static 'base.css' %}">
-</head>
-<body>
-    <a href="{% url 'new_recipe' %}">Dodaj</a>
-    <h2>Lista przepisów:</h2>
+{% extends 'base.html' %}
+{% block title %} Przepisy {% endblock %}
+
+{% block page %}
+
+    <div class="jumbotron">
+         {% if user.is_authenticated %}
+            <h1 class="display-4">Witaj {{ user.username }}!</h1>
+            <a href="{% url 'logout' %}", class="btn btn-secondary">Wyloguj <i class="fas fa-sign-out-alt"></i></a>
+        {% else %}
+            <h1 class="display-4">Witaj!</h1>
+            <a href="{% url 'login' %}", class="btn btn-success">Zaloguj się <i class="fas fa-sign-in-alt"></i></a>
+        {% endif%}
+
+      <p class="lead">Strona z przepisami. Wszystkich: {{ recipes|length }}</p>
+      <hr class="my-4">
+      <p class="lead">
+        <a class="btn btn-primary btn-lg" href="{% url 'new_recipe' %}" role="button">Dodaj <i class="fas fa-plus-circle"></i></a>
+      </p>
+    </div>
+
 
     {% if recipes|length == 0 %}
         <h3>Pusta lista</h3>
     {% else %}
-        <p>Ilość: {{ recipes|length }}</p>
         {% for recipe in recipes %}
-           <h3> {{ recipe }} </h3>
-           <p> {{ recipe.id }}</p>
-           <p> {{ recipe.description }}</p>
-           <p> {{ recipe.steps }}</p>
-           <a href="{% url 'edit_recipe' recipe.id %}">Edytuj</a>
-           <a href="{% url 'delete_recipe' recipe.id %}">Usuń</a>
+            <div class="card" style="width: 26rem;">
+              <div class="card-body">
+
+                  <div class="row">
+                      <div class="col-9">
+                          <h5 class="card-title">{{ recipe }}</h5>
+                      </div>
+                      {% if user.is_authenticated %}
+                      <div class="col-3">
+                          <a href="{% url 'edit_recipe' recipe.id %}" class="card-link"><i class="far fa=2x fa-edit"></i></a>
+                          <a href="{% url 'delete_recipe' recipe.id %}" class="card-link"><i class="far fa=2x fa-trash-alt"></i></a>
+                      </div>
+                      {% endif%}
+                  </div>
+
+                  <div class="row">
+                      <h6 class="card-subtitle mb-2 text-muted">{{ recipe.description }}</h6>
+                      <p class="card-text">{{ recipe.steps }}</p>
+                  </div>
+                </div>
+            </div>
         {% endfor %}
     {% endif%}
-</body>
-</html>
+{% endblock %}

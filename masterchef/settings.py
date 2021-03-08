@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'bootstrapform',
     'masterchef_backend'
 ]
 
@@ -123,3 +124,7 @@ STATICFILES_DIRS = ['global_static']
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = 'media_files'
+
+LOGIN_URL = 'login'
+LOGIN_REDIRECT_URL = 'all_recipe'
+LOGOUT_REDIRECT_URL = 'all_recipe'

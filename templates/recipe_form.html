@@ -1,17 +1,12 @@
-{% load static %}
-<!DOCTYPE html>
-<html lang="pl">
-<head>
-    <meta charset="UTF-8">
-    <title>Nowy przepis</title>
-    <link rel="stylesheet" href="{% static 'base.css' %}">
-</head>
-<body>
+{% extends 'base.html' %}
+{% load bootstrap %}
+{% block title %} Przepis {% endblock %}
+
+{% block page %}
     <a href="{% url 'all_recipe' %}">Cofnij</a>
     <form method="post" enctype="multipart/form-data">
         {% csrf_token %}
-        {{ form }}
+        {{ form|bootstrap }}
         <button type="Zapisz">Zapisz</button>
     </form>
-</body>
-</html>
+{% endblock %}

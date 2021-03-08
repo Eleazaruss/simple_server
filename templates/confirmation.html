@@ -1,15 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Confirmation </title>
-</head>
-<body>
+{% extends 'base.html' %}
+{% block title %} Potwierdzenie {% endblock %}
+
+{% block page %}
     <a href="{% url 'all_recipe' %}">Cofnij</a>
     <h1>Czy napewno chcesz usunąć "{{ recipe }}" przepis?</h1>
     <form method="post">
         {% csrf_token %}
         <button type="submit">Usuń</button>
     </form>
-</body>
-</html>
+{% endblock %}
